@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      color-scheme: light dark;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      height: 80%;
+      width: 35%;
+      border: 1px solid white;
+      border-radius: 20px;
+      box-shadow: 4px 2px 10px white;
+      overflow: hidden;
+    }
+
+    .input {
+      width: 100%;
+      height: 20%;
+      padding: 10px;
+    }
+
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      /* border-radius: 20px; */
+      font-size: 28px;
+      text-align: center;
+      padding: 0px 10px;
+      /* background-color: black; */
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    .buttons {
+      height: 80%;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+      padding: 10px;
+      gap: 20px;
+    }
+
+    .btn {
+      display: grid;
+      place-content: center;
+      border: 1px solid white;
+      background-color: transparent;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 2px 2px 2px white;
+
+      border-radius: 20px;
+      /* padding: 5px; */
+    }
+
+    .btn:first-child {
+      background-color: red;
+    }
+
+    .btn:last-child {
+      background-color: aqua;
+      color: black;
+      font-size: 28px;
+    }
+
+    .btn:nth-child(2) {
+      background-color: chocolate;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="input"><input type="text" id="input" readonly /></div>
+    <div class="buttons">
+      <button class="btn">AC</button class="btn"><button class="btn">DEL</button class="btn"><button
+        class="btn">%</button class="btn"><button class="btn">/</button class="btn"><button class="btn">7</button
+        class="btn"><button class="btn">8</button class="btn"><button class="btn">9</button class="btn"><button
+        class="btn">*</button class="btn"><button class="btn">4</button class="btn"><button class="btn">5</button
+        class="btn"><button class="btn">6</button class="btn"><button class="btn">-</button class="btn"><button
+        class="btn">1</button class="btn"><button class="btn">2</button class="btn"><button class="btn">3</button
+        class="btn"><button class="btn">+</button class="btn"><button class="btn">00</button class="btn"><button
+        class="btn">0</button class="btn"><button class="btn">.</button class="btn"><button class="btn">=</button
+        class="btn">
+    </div>
+  </div>
+  <script>
+    let btn = document.getElementsByTagName('button');
+    console.log(btn);
+    let arr = Array.from(btn);
+    let input = document.getElementById('input');
+    let str = '';
+    arr.forEach(button => {
+      button.addEventListener('click', (e) => {
+        console.log(e.target.innerText)
+        if (e.target.innerText == '=') {
+          try {
+            str = eval(str); input.value = str
+          }
+          catch {
+            input.value = "Error";
+            str = '';
+          }
+        }
+        else if (e.target.innerText == 'AC') { str = ''; input.value = str }
+        else if (e.target.innerText == 'DEL') { str = str.slice(0, str.length - 1); input.value = str }
+        else { str += e.target.innerText; input.value = str };
+
+      })
+    })
+  </script>
+</body>
+
+</html>
